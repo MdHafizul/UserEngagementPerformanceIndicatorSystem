@@ -11,7 +11,7 @@ class UserTaskController
     public function create($data)
     {
         session_start();
-        if ($this->checkUserType() != 'admin') {
+        if ($this->checkUserType() != 'admin' && $this->checkUserType() != 'employee') {
             http_response_code(403);
             echo json_encode(["message" => "Access forbidden. Admins only"]);
             return;

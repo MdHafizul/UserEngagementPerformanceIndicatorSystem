@@ -1,4 +1,10 @@
 <?php
+
+// CORS Headers
+header("Access-Control-Allow-Origin: *"); // Allow requests from any origin
+header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS"); // Allow necessary HTTP methods
+header("Access-Control-Allow-Headers: Content-Type, Authorization"); // Allow necessary headers
+
 // Include necessary files
 include_once '../models/taskModel.php';
 include_once '../controllers/taskController.php';

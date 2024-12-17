@@ -19,8 +19,8 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/favicon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/naluri.png">
+  <link rel="icon" type="image/png" href="../assets/img/naluri.png">
   <title>
     Naluri User Engagement Performance Indicator System
   </title>
@@ -45,7 +45,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0"
                 href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
-                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26"
+                <img src="../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26"
                     alt="main_logo">
                 <span class="ms-1 text-sm text-dark">Naluri</span>
             </a>

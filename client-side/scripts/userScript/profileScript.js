@@ -1,17 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     const apiEndpoint = `http://localhost/Naluri/server-side/routes/userRoutes.php/read_single?user_id=${userId}`;
+    console.log("API Endpoint:", apiEndpoint); // Debugging line
+
     const profileCard = document.getElementById("profile-card");
 
     // Fetch user profile data
     function fetchUserProfile() {
         fetch(apiEndpoint)
             .then((response) => {
+                console.log("API Response Status:", response.status); // Debugging line
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
                 return response.json();
             })
             .then((user) => {
+                console.log("User Data:", user); // Debugging line
                 profileCard.innerHTML = `
                     <div class="col-md-12 col-xl-4">
                         <div class="card" style="border-radius: 15px;">
@@ -72,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
             email: document.getElementById("editUserEmail").value,
             username: document.getElementById("editUserUsername").value,
             password: document.getElementById("editUserPassword").value,
-
         };
 
         fetch(`http://localhost/Naluri/server-side/routes/userRoutes.php/update?user_id=${userId}`, {
@@ -83,13 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
             body: JSON.stringify(userData),
         })
             .then((response) => {
+                console.log("Update Response Status:", response.status); // Debugging line
                 if (!response.ok) {
                     return response.text().then(text => { throw new Error(text) });
                 }
                 return response.json();
             })
             .then((data) => {
-                console.log("User updated:", data);
+                console.log("User updated:", data); // Debugging line
                 alert("Profile updated successfully!");
                 fetchUserProfile(); // Refresh the profile data
                 bootstrap.Modal.getInstance(document.getElementById("editUserModal")).hide();

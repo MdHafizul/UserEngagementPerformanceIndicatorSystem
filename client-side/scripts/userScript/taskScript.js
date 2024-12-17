@@ -76,6 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const timeTaken = document.getElementById("timeTaken").value;
         const videoWatched = document.getElementById("videoWatched").checked;
         const articleRead = document.getElementById("articleRead").checked;
+        const bookRead = document.getElementById("bookRead").checked;
+
 
         // For now, just show an alert with the task details
         alert(`Task ID: ${taskId}\nTask Done: ${taskDone}\nTime Taken: ${timeTaken}\nVideo Watched: ${videoWatched}\nArticle Read: ${articleRead}`);

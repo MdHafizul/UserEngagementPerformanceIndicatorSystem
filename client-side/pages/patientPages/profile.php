@@ -1,8 +1,15 @@
 <?php
 session_start();
 
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
+}
+
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-    header('Location: /Naluri/client-side/pages/login.php');
+    header('Location: /Naluri/client-side/index.php');
     exit();
 }
 
@@ -82,7 +89,7 @@ $user_id = $_SESSION['user_id'];
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
             <div class="mx-3">
-                <a class="btn bg-gradient-dark w-100" href="../../index.php" type="button">Logout</a>
+                <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
             </div>
         </div>
     </aside>
@@ -107,7 +114,6 @@ $user_id = $_SESSION['user_id'];
                 </div>
             </div>
         </nav>
-        
         <!-- Profile Card -->
         <div class="container-fluid py-2">
             <div class="row">
@@ -170,6 +176,7 @@ $user_id = $_SESSION['user_id'];
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const userId = "<?php echo $user_id; ?>"; // Pass the user ID to JavaScript
+        console.log("User ID:", userId); // Debugging line
     </script>
     <script src="../../scripts/userScript/profileScript.js"></script>
 </body>

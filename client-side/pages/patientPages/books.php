@@ -1,10 +1,16 @@
 <?php
-// filepath: /c:/xampp/htdocs/Naluri/client-side/pages/patientPages/books.php
 session_start();
 
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+  session_unset();
+  session_destroy();
+  header('Location: /Naluri/client-side/index.php');
+  exit();
+}
+
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-    header('Location: /Naluri/client-side/pages/login.php');
-    exit();
+  header('Location: /Naluri/client-side/index.php');
+  exit();
 }
 
 $user_id = $_SESSION['user_id'];
@@ -81,9 +87,9 @@ $user_id = $_SESSION['user_id'];
                 <!-- Additional Navigation Links -->
             </ul>
         </div>
-        <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+        <div class="sidenav-footer position-absolute w-100 bottom-0">
             <div class="mx-3">
-                <a class="btn bg-gradient-dark w-100" href="../../index.php" type="button">Logout</a>
+                <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
             </div>
         </div>
     </aside>

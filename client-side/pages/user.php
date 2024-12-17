@@ -1,11 +1,26 @@
+<?php
+session_start();
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
+}
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
+    header('Location: /Naluri/client-side/index.php');
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/naluri.png">
+    <link rel="icon" type="image/png" href="../assets/img/naluri.png">
     <title>User Pages</title>
 
     <!-- Fonts and icons -->
@@ -29,7 +44,7 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0"
                 href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
-                <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26"
+                <img src="../assets/img/naluri.png" class="navbnaluriar-brand-img" width="26" height="26"
                     alt="main_logo">
                 <span class="ms-1 text-sm text-dark">Creative Tim</span>
             </a>
@@ -72,7 +87,7 @@
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
             <div class="mx-3">
-                <a class="btn bg-gradient-dark w-100" href="../index.php" type="button">Logout</a>
+                <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
             </div>
         </div>
     </aside>
@@ -102,7 +117,7 @@
                 </div>
             </div>
         </nav>
-        
+
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-12">
@@ -117,10 +132,18 @@
                                 <table class="table align-items-center mb-0" id="userTable">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User_Type</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Name</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Email</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Username</th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                User_Type</th>
                                             <th class="text-secondary opacity-7"></th>
                                         </tr>
                                     </thead>

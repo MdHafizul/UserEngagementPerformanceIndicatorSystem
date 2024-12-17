@@ -1,11 +1,28 @@
+<?php
+session_start();
+
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+  session_unset();
+  session_destroy();
+  header('Location: /Naluri/client-side/index.php');
+  exit();
+}
+
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
+    header('Location: /Naluri/client-side/index.php');
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/naluri.png">
+    <link rel="icon" type="image/png" href="../../assets/img/naluri.png">
     <title>Task Pages</title>
 
     <!-- Fonts and icons -->
@@ -24,8 +41,8 @@
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0" href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
-                <img src="../../assets/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
-                <span class="ms-1 text-sm text-dark">Creative Tim</span>
+                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
+                <span class="ms-1 text-sm text-dark">Naluri</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0 mb-2">
@@ -65,9 +82,10 @@
             </ul>
         </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-            <div class="mx-3">
-                <a class="btn bg-gradient-dark w-100" href="../../index.php" type="button">Logout</a>
+        <div class="mx-3">
+                <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
             </div>
+        </div>
         </div>
     </aside>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -124,6 +142,7 @@
     </main>
 
     <!-- Include the script file for task functionality -->
+     
     <script src="../../scripts/employeeScript/taskScript.js"></script>
     <!-- Include Bootstrap JS for modal functionality -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

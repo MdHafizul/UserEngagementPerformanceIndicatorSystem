@@ -1,11 +1,17 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-    header('Location: /Naluri/client-side/pages/login.php');
+if (isset($_GET['action']) && $_GET['action'] == 'logout') {
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
     exit();
 }
 
+if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
+    header('Location: /Naluri/client-side/index.php');
+    exit();
+}
 $user_id = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
@@ -66,7 +72,7 @@ $user_id = $_SESSION['user_id'];
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" href="./user.php">
+                        <a class="nav-link text-dark" href="./resource.php">
                             <i class="material-symbols-rounded opacity-5">folder</i>
                             <span class="nav-link-text ms-1">Resource</span>
                         </a>
@@ -80,9 +86,9 @@ $user_id = $_SESSION['user_id'];
                     <!-- Additional Navigation Links -->
                 </ul>
             </div>
-            <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+            <div class="sidenav-footer position-absolute w-100 bottom-0">
                 <div class="mx-3">
-                    <a class="btn bg-gradient-dark w-100" href="../../index.php" type="button">Logout</a>
+                    <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
                 </div>
             </div>
         </aside>
@@ -192,6 +198,14 @@ $user_id = $_SESSION['user_id'];
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="articleRead">
                                     <label class="form-check-label ms-1" for="articleRead">Yes</label>
+                                </div>
+                            </div>
+                            <!-- Book Read -->
+                            <div class="mb-4">
+                                <label for="bookRead" class="form-label fw-semibold">Book Read</label>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="bookRead">
+                                    <label class="form-check-label ms-1" for="bookRead">Yes</label>
                                 </div>
                             </div>
                             <!-- Submit Button -->

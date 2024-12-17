@@ -2,16 +2,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const apiEndpoint = `http://localhost/Naluri/server-side/routes/userRoutes.php/read_single?user_id=${userId}`;
     const profileCard = document.getElementById("profile-card");
 
+    console.log("Script loaded. User ID:", userId); // Debugging
+
     // Fetch user profile data
     function fetchUserProfile() {
+        console.log("Attempting to fetch user profile from:", apiEndpoint); // Debugging
+
         fetch(apiEndpoint)
             .then((response) => {
+                console.log("Received response:", response); // Debugging response object
+
                 if (!response.ok) {
+                    console.error("Network response was not ok. Status:", response.status);
                     throw new Error("Network response was not ok");
                 }
                 return response.json();
             })
             .then((user) => {
+                console.log("Fetched user data:", user); // Debugging user data
+
                 profileCard.innerHTML = `
                     <div class="col-md-12 col-xl-4">
                         <div class="card" style="border-radius: 15px;">
@@ -40,16 +49,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
+                console.log("Profile successfully loaded and rendered."); // Debugging
+
                 // Add event listener for the edit button
                 document.getElementById("editUserBtn").addEventListener("click", () => {
+                    console.log("Edit Profile button clicked. Showing modal...");
                     showEditUserModal(user);
                 });
             })
             .catch((error) => {
-                console.error("Error fetching user profile:", error);
+                console.error("Error fetching user profile:", error.message); // Debugging errors
                 profileCard.innerHTML = `
                     <div class="col-12 text-center text-danger">
-                        Failed to load profile data.
+                        Failed to load profile data. Please try again later.
                     </div>
                 `;
             });
@@ -57,47 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Show the edit user modal with pre-filled data
     function showEditUserModal(user) {
-        document.getElementById("editUserName").value = user.name;
-        document.getElementById("editUserEmail").value = user.email;
-        document.getElementById("editUserUsername").value = user.username;
-        document.getElementById("editUserPassword").value = ""; 
+        console.log("Populating edit modal with user data:", user); // Debugging
+
+        document.getElementById("editUserName").value = user.name || '';
+        document.getElementById("editUserEmail").value = user.email || '';
+        document.getElementById("editUserUsername").value = user.username || '';
+        document.getElementById("editUserPassword").value = ''; // Clear password field for security
+
+        console.log("Edit modal populated."); // Debugging
     }
 
-    // Handle form submission for editing user
-    document.getElementById("editUserForm").addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const userData = {
-            name: document.getElementById("editUserName").value,
-            email: document.getElementById("editUserEmail").value,
-            username: document.getElementById("editUserUsername").value,
-            password: document.getElementById("editUserPassword").value,
-        };
-
-        fetch(`http://localhost/Naluri/server-side/routes/userRoutes.php/update?user_id=${userId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userData),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    return response.text().then(text => { throw new Error(text) });
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("User updated:", data);
-                alert("Profile updated successfully!");
-                fetchUserProfile(); // Refresh the profile data
-                bootstrap.Modal.getInstance(document.getElementById("editUserModal")).hide();
-            })
-            .catch((error) => {
-                console.error("Error updating user:", error);
-            });
-    });
-
-    // Initial fetch of user profile data
+    // Fetch the user profile on page load
     fetchUserProfile();
 });
