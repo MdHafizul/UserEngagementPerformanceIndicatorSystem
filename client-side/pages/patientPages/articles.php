@@ -80,7 +80,7 @@ $user_id = $_SESSION['user_id'];
                 <!-- Additional Navigation Links -->
             </ul>
         </div>
-        <div class="sidenav-footer position-absolute w-100 bottom-0">
+        <div class="sidenav-footer position-absolute w-100 bottom-0 ">
             <div class="mx-3">
                 <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
             </div>
@@ -104,6 +104,17 @@ $user_id = $_SESSION['user_id'];
                             <input type="text" class="form-control">
                         </div>
                     </div>
+                    <ul class="navbar-nav d-flex align-items-center justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <select class="form-select" id="userSelect">
+                                <option value="all">All Users</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <button class="btn btn-outline-primary btn-sm mb-0 me-3" id="showDataBtn">Show Data</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -113,43 +124,54 @@ $user_id = $_SESSION['user_id'];
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Article</h6>
+                                <h6 class="text-white text-capitalize ps-3">Articles</h6>
                             </div>
                         </div>
-                        <div class="container-fluid py-4">
+                        <div class="card-body px-0 pb-2">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-md-6 mb-4">
                                     <div class="card">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Article 1</h5>
-                                            <p class="card-text">Description of Article 1.</p>
-                                            <a href="https://example.com/article1" class="btn btn-primary"
-                                                target="_blank">Read Article</a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Healthy Eating</h5>
+                                            <p class="card-text">Learn about the benefits of healthy eating and how to incorporate it into your daily routine.</p>
+                                            <a href="https://www.healthline.com/nutrition/healthy-eating-tips" target="_blank" class="btn btn-primary">Read More</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-md-6 mb-4">
                                     <div class="card">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Article 2</h5>
-                                            <p class="card-text">Description of Article 2.</p>
-                                            <a href="https://example.com/article2" class="btn btn-primary"
-                                                target="_blank">Read Article</a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Exercise Tips</h5>
+                                            <p class="card-text">Discover effective exercise tips to stay fit and healthy.</p>
+                                            <a href="https://www.webmd.com/fitness-exercise/features/10-workout-secrets-expert-exercise-tips" target="_blank" class="btn btn-primary">Read More</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-md-6 mb-4">
                                     <div class="card">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Article 3</h5>
-                                            <p class="card-text">Description of Article 3.</p>
-                                            <a href="https://example.com/article3" class="btn btn-primary"
-                                                target="_blank">Read Article</a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">Mental Health</h5>
+                                            <p class="card-text">Understand the importance of mental health and how to maintain it.</p>
+                                            <a href="https://www.mentalhealth.org.uk/publications/how-to-mental-health" target="_blank" class="btn btn-primary">Read More</a>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Yoga for Beginners</h5>
+                                            <p class="card-text">Get started with yoga with these beginner tips and routines.</p>
+                                            <a href="https://www.yogajournal.com/poses/yoga-for/beginners" target="_blank" class="btn btn-primary">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add more article cards as needed -->
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Include Bootstrap JS for modal functionality -->

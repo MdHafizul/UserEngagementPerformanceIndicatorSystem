@@ -107,22 +107,27 @@ class UserTaskController
     
     // @desc Delete a user task
     // @route DELETE /routes/userTaskRoutes.php/delete
-    // @access admin only
+    // @access Admin only
     public function delete($id)
     {
-        session_start();
-        if ($this->checkUserType() != 'admin') {
-            http_response_code(403);
-            echo json_encode(["message" => "Access forbidden. Admins only"]);
+        global $conn;
+
+        // Delete the corresponding task analysis
+        $analysis = new TaskAnalysis($conn);
+        $analysis->user_task_id = $id;
+        if (!$analysis->deleteByUserTaskId()) {
+            echo json_encode(["success" => false, "message" => "Task analysis could not be deleted"], JSON_PRETTY_PRINT);
             return;
         }
-        global $conn;
+
+        // Delete the user task
         $userTask = new UserTask($conn);
         $userTask->user_task_id = $id;
-        if($userTask->delete()) {
-            echo json_encode(["message" => "User task deleted successfully"]);
+
+        if ($userTask->delete()) {
+            echo json_encode(["success" => true, "message" => "User task deleted successfully"], JSON_PRETTY_PRINT);
         } else {
-            echo json_encode(["message" => "User task could not be deleted"]);
+            echo json_encode(["success" => false, "message" => "User task could not be deleted"], JSON_PRETTY_PRINT);
         }
     }
 

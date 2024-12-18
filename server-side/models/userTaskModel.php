@@ -144,16 +144,17 @@ class UserTask
         return false;
     }
 
-    // Delete a user-task assignment
+    // Delete a user task
     public function delete()
     {
-        $sql = "DELETE FROM " . $this->table . " WHERE user_task_id = ?";
+        $sql = "DELETE FROM " . $this->table . " WHERE user_task_id=?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $this->user_task_id);
 
         if ($stmt->execute()) {
             return true;
         }
+
         return false;
     }
 }

@@ -2,15 +2,15 @@
 session_start();
 
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-  session_unset();
-  session_destroy();
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 $user_id = $_SESSION['user_id'];
@@ -46,8 +46,7 @@ $user_id = $_SESSION['user_id'];
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0"
                 href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
-                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26"
-                    alt="main_logo">
+                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
                 <span class="ms-1 text-sm text-dark">Naluri</span>
             </a>
         </div>
@@ -119,7 +118,7 @@ $user_id = $_SESSION['user_id'];
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
-                            <div class="row">
+                            <div class="row justify-content-center">
                                 <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-body text-center">
@@ -134,16 +133,7 @@ $user_id = $_SESSION['user_id'];
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Exercise Routine</h5>
                                             <p class="card-text">Follow a customized exercise routine.</p>
-                                            <a href="./exerciseRoutine.php" class="btn btn-primary">View Exercise Routine</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">Mental Health Tips</h5>
-                                            <p class="card-text">Read tips for better mental health.</p>
-                                            <a href="./mentalHealthTips.php" class="btn btn-primary">View Mental Health Tips</a>
+                                            <a href="./excercise.php" class="btn btn-primary">View Exercise Routine</a>
                                         </div>
                                     </div>
                                 </div>
@@ -152,6 +142,7 @@ $user_id = $_SESSION['user_id'];
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </main>
 

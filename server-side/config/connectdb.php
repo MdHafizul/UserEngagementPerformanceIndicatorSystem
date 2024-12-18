@@ -1,11 +1,11 @@
 <?php
-$host = 'localhost';
-$user = 'root'; 
-$password = ''; 
-$dbname = 'NaluriDatabase'; 
+$host = 'localhost:3310';
+$user = 'root';
+$password = '';
+$dbname = 'NaluriDatabase';
 
 // Create a connection
-$conn = new mysqli($host, $user, $password, $dbname);
+$conn = new mysqli(hostname: $host, username: $user, password: $password, database: $dbname);
 
 // Check connection
 if ($conn->connect_error) {

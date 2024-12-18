@@ -26,7 +26,7 @@ if (isset($_SESSION['user_type'])) {
     } else if ($_SESSION['user_type'] === 'admin') {
         header('Location: /Naluri/client-side/pages/dashboard.php');
     } else if ($_SESSION['user_type'] === 'patient') {
-        header('Location: /Naluri/client-side/pages/patientPages/task.php');
+        header('Location: /Naluri/client-side/pages/patientPages/recommendation.php');
     }
     exit();
 }

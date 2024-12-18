@@ -2,15 +2,15 @@
 session_start();
 
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-  session_unset();
-  session_destroy();
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
-if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 $user_id = $_SESSION['user_id'];
@@ -81,7 +81,7 @@ $user_id = $_SESSION['user_id'];
                 <!-- Additional Navigation Links -->
             </ul>
         </div>
-        <div class="sidenav-footer position-absolute w-100 bottom-0">
+        <div class="sidenav-footer position-absolute w-100 bottom-0 ">
             <div class="mx-3">
                 <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
             </div>
@@ -105,10 +105,20 @@ $user_id = $_SESSION['user_id'];
                             <input type="text" class="form-control">
                         </div>
                     </div>
+                    <ul class="navbar-nav d-flex align-items-center justify-content-end">
+                        <li class="nav-item d-flex align-items-center">
+                            <select class="form-select" id="userSelect">
+                                <option value="all">All Users</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <button class="btn btn-outline-primary btn-sm mb-0 me-3" id="showDataBtn">Show Data</button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
-
         <div class="container-fluid py-2">
             <div class="row">
                 <div class="col-12">
@@ -119,33 +129,48 @@ $user_id = $_SESSION['user_id'];
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Link</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Video 1</td>
-                                            <td>Introduction to Health</td>
-                                            <td class="text-center"><a href="https://www.example.com/video1" target="_blank">Watch</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Video 2</td>
-                                            <td>Nutrition Basics</td>
-                                            <td class="text-center"><a href="https://www.example.com/video2" target="_blank">Watch</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Video 3</td>
-                                            <td>Mental Health Awareness</td>
-                                            <td class="text-center"><a href="https://www.example.com/video3" target="_blank">Watch</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Exercise Tips</h5>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Healthy Eating</h5>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5qap5aO4i9A" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Mental Health</h5>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/3JZ_D3ELwOQ" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Yoga for Beginners</h5>
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v7AYKMP6rOE" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add more video cards as needed -->
                             </div>
                         </div>
                     </div>

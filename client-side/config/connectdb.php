@@ -1,11 +1,11 @@
 <?php
-$servername = "localhost"; // Change this to your database server name
-$username = "root"; // Change this to your database username
-$password = ""; // Change this to your database password
-$dbname = "naluridatabase"; // Change this to your database name
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "NaluriDatabase";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $user, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {

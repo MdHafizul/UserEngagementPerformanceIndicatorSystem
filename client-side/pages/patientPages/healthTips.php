@@ -2,15 +2,15 @@
 session_start();
 
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-  session_unset();
-  session_destroy();
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 $user_id = $_SESSION['user_id'];
@@ -23,7 +23,7 @@ $user_id = $_SESSION['user_id'];
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/naluri.png">
     <link rel="icon" type="image/png" href="../../assets/img/naluri.png">
-    <title>Books</title>
+    <title>Health Tips</title>
 
     <!-- Fonts and icons -->
     <link rel="stylesheet" type="text/css"
@@ -46,8 +46,7 @@ $user_id = $_SESSION['user_id'];
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0"
                 href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
-                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26"
-                    alt="main_logo">
+                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26">
                 <span class="ms-1 text-sm text-dark">Naluri</span>
             </a>
         </div>
@@ -55,7 +54,7 @@ $user_id = $_SESSION['user_id'];
         <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="./recommendation.php">
+                    <a class="nav-link active bg-gradient-dark text-white" href="./recommendation.php">
                         <i class="material-symbols-rounded opacity-5">table_view</i>
                         <span class="nav-link-text ms-1">Recommendation</span>
                     </a>
@@ -67,7 +66,7 @@ $user_id = $_SESSION['user_id'];
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active bg-gradient-dark text-white" href="./resource.php">
+                    <a class="nav-link text-dark" href="./resource.php">
                         <i class="material-symbols-rounded opacity-5">folder</i>
                         <span class="nav-link-text ms-1">Resource</span>
                     </a>
@@ -80,7 +79,6 @@ $user_id = $_SESSION['user_id'];
                 </li>
                 <!-- Additional Navigation Links -->
             </ul>
-        </div>
         <div class="sidenav-footer position-absolute w-100 bottom-0">
             <div class="mx-3">
                 <a class="btn bg-gradient-dark w-100" href="?action=logout" type="button">Logout</a>
@@ -95,7 +93,7 @@ $user_id = $_SESSION['user_id'];
                     <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                         <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a>
                         </li>
-                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Books</li>
+                        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Health Tips</li>
                     </ol>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
@@ -115,45 +113,38 @@ $user_id = $_SESSION['user_id'];
                     <div class="card my-4">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
-                                <h6 class="text-white text-capitalize ps-3">Books</h6>
+                                <h6 class="text-white text-capitalize ps-3">Health Tips</h6>
                             </div>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="row">
-                                <!-- Book 1 -->
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-md-4">
                                     <div class="card">
-                                        <img src="../../assets/img/books/book1.jpg" class="card-img-top" alt="Book 1">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Understanding Mentall Illness</h5>
-                                            <p class="card-text">Brief description of the book.</p>
-                                            <a href="book1.php" class="btn btn-primary">Read More</a>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Exercise Tips</h5>
+                                            <p class="card-text">Learn about effective exercises.</p>
+                                            <a href="./excercise.php" class="btn btn-primary">Go to Exercise Tips</a>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Book 2 -->
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-md-4">
                                     <div class="card">
-                                        <img src="../../assets/img/books/book2.jpg" class="card-img-top" alt="Book 2">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Book Title 2</h5>
-                                            <p class="card-text">Brief description of the book.</p>
-                                            <a href="book2.php" class="btn btn-primary">Read More</a>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Diet Plans</h5>
+                                            <p class="card-text">Discover healthy diet plans.</p>
+                                            <a href="./dietplan.php" class="btn btn-primary">Go to Diet Plans</a>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Book 3 -->
-                                <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="col-md-4">
                                     <div class="card">
-                                        <img src="../../assets/img/books/book3.jpg" class="card-img-top" alt="Book 3">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Book Title 3</h5>
-                                            <p class="card-text">Brief description of the book.</p>
-                                            <a href="book3.php" class="btn btn-primary">Read More</a>
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">General Tips</h5>
+                                            <p class="card-text">Read general health tips.</p>
+                                            <a href="./generalTips.php" class="btn btn-primary">Go to General Tips</a>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Add more books as needed -->
                             </div>
                         </div>
                     </div>
