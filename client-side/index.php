@@ -1,5 +1,23 @@
 <?php
 session_start();
+require_once './config/connectdb.php'; 
+
+function sanitizeInput($input) {
+    return htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = sanitizeInput($_POST['name']);
+    $email = sanitizeInput($_POST['email']);
+    $username = sanitizeInput($_POST['username']);
+    $password = sanitizeInput($_POST['password']);
+
+    // Use prepared statements to prevent SQL injection
+    $stmt = $conn->prepare("INSERT INTO users (name, email, username, password, user_type) VALUES (?, ?, ?, ?, 'patient')");
+    $stmt->bind_param("ssss", $name, $email, $username, password_hash($password, PASSWORD_BCRYPT));
+    $stmt->execute();
+    $stmt->close();
+}
 
 if (isset($_SESSION['user_type'])) {
     if ($_SESSION['user_type'] === 'employee') {
@@ -21,6 +39,7 @@ if (isset($_SESSION['user_type'])) {
     <title>Naluri HomePage</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
     <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 
 <body>
@@ -71,7 +90,6 @@ if (isset($_SESSION['user_type'])) {
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
 </body>
 
 </html>

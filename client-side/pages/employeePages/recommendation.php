@@ -104,12 +104,6 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'employee') {
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active bg-gradient-dark text-white" href="./recommendation.php">
-                        <i class="material-symbols-rounded opacity-5">table_view</i>
-                        <span class="nav-link-text ms-1">Recommendation</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-dark" href="./task.php">
                         <i class="material-symbols-rounded opacity-5">task</i>
                         <span class="nav-link-text ms-1">Task</span>

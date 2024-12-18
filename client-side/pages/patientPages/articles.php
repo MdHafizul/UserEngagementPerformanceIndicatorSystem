@@ -2,15 +2,15 @@
 session_start();
 
 if (isset($_GET['action']) && $_GET['action'] == 'logout') {
-  session_unset();
-  session_destroy();
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    session_unset();
+    session_destroy();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'patient') {
-  header('Location: /Naluri/client-side/index.php');
-  exit();
+    header('Location: /Naluri/client-side/index.php');
+    exit();
 }
 
 $user_id = $_SESSION['user_id'];
@@ -46,8 +46,7 @@ $user_id = $_SESSION['user_id'];
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand px-4 py-3 m-0"
                 href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
-                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26"
-                    alt="main_logo">
+                <img src="../../assets/img/naluri.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
                 <span class="ms-1 text-sm text-dark">Naluri</span>
             </a>
         </div>
@@ -114,38 +113,49 @@ $user_id = $_SESSION['user_id'];
                 </div>
             </div>
         </nav>
-
-        <div class="container-fluid py-4">
+        <div class="container-fluid py-2">
             <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Article 1</h5>
-                            <p class="card-text">Description of Article 1.</p>
-                            <a href="https://example.com/article1" class="btn btn-primary" target="_blank">Read Article</a>
+                <div class="col-12">
+                    <div class="card my-4">
+                        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+                            <div class="bg-gradient-dark shadow-dark border-radius-lg pt-4 pb-3">
+                                <h6 class="text-white text-capitalize ps-3">Article</h6>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Article 2</h5>
-                            <p class="card-text">Description of Article 2.</p>
-                            <a href="https://example.com/article2" class="btn btn-primary" target="_blank">Read Article</a>
+                        <div class="container-fluid py-4">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Article 1</h5>
+                                            <p class="card-text">Description of Article 1.</p>
+                                            <a href="https://example.com/article1" class="btn btn-primary"
+                                                target="_blank">Read Article</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Article 2</h5>
+                                            <p class="card-text">Description of Article 2.</p>
+                                            <a href="https://example.com/article2" class="btn btn-primary"
+                                                target="_blank">Read Article</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">Article 3</h5>
+                                            <p class="card-text">Description of Article 3.</p>
+                                            <a href="https://example.com/article3" class="btn btn-primary"
+                                                target="_blank">Read Article</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Article 3</h5>
-                            <p class="card-text">Description of Article 3.</p>
-                            <a href="https://example.com/article3" class="btn btn-primary" target="_blank">Read Article</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <!-- Include Bootstrap JS for modal functionality -->

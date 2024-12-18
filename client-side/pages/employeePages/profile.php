@@ -61,12 +61,6 @@ $user_id = $_SESSION['user_id'];
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="./employee.php">
-                        <i class="material-symbols-rounded opacity-5">table_view</i>
-                        <span class="nav-link-text ms-1">Employee</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link text-dark" href="./task.php">
                         <i class="material-symbols-rounded opacity-5">task</i>
                         <span class="nav-link-text ms-1">Task</span>

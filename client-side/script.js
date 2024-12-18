@@ -11,14 +11,20 @@ signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
 });
 
+function sanitizeInput(input) {
+    const element = document.createElement('div');
+    element.innerText = input;
+    return element.innerHTML;
+}
+
 // Handle Sign-Up Form Submission
 document.getElementById('signUpForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const name = sanitizeInput(document.getElementById('name').value.trim());
+    const email = sanitizeInput(document.getElementById('email').value.trim());
+    const username = sanitizeInput(document.getElementById('username').value.trim());
+    const password = sanitizeInput(document.getElementById('password').value.trim());
 
     try {
         const response = await fetch('http://localhost/Naluri/server-side/routes/userRoutes.php/create', {
@@ -53,8 +59,8 @@ document.getElementById('signUpForm').addEventListener('submit', async (event) =
 document.getElementById('signInForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const email = document.getElementById('signinEmail').value.trim();
-    const password = document.getElementById('signinPassword').value.trim();
+    const email = sanitizeInput(document.getElementById('signinEmail').value.trim());
+    const password = sanitizeInput(document.getElementById('signinPassword').value.trim());
 
     try {
         const response = await fetch('http://localhost/Naluri/server-side/routes/userRoutes.php/login', {
@@ -64,29 +70,21 @@ document.getElementById('signInForm').addEventListener('submit', async (event) =
             },
             body: JSON.stringify({
                 email,
-                password,
+                password
             })
         });
 
         const result = await response.json();
 
         if (response.ok) {
-            alert("Login successful!");
-            if (result.user_type === 'employee') {
-                window.location.href = "/Naluri/client-side/pages/employeePages/dashboard.php"; // Redirect to the employee dashboard
-            } else if (result.user_type === 'admin') {
-                window.location.href = "/Naluri/client-side/pages/dashboard.php"; // Redirect to the general dashboard
-            } else if (result.user_type === 'patient') {
-                window.location.href = "/Naluri/client-side/pages/patientPages/dashboard.php"; // Redirect to the patient dashboard
-            } else {
-                alert("You are not authorized to access any dashboard.");
-            }
+            alert("Signed in successfully!");
+            // Redirect to dashboard or appropriate page
+            window.location.href = result.redirectUrl;
         } else {
             alert(`Error: ${result.message}`);
         }
-
     } catch (error) {
         console.error("Sign-In Error:", error);
-        alert("An error occurred during login. Please try again later.");
+        alert("An error occurred during sign-in. Please try again later.");
     }
 });

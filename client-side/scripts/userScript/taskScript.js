@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll(".submitTaskBtn").forEach((button) => {
                     button.addEventListener("click", (event) => {
                         const taskId = event.target.getAttribute("data-id");
+                        console.log("Task ID:", taskId); // Debugging statement
                         showSubmitTaskModal(taskId);
                     });
                 });
@@ -67,21 +68,44 @@ document.addEventListener("DOMContentLoaded", () => {
         submitTaskModal.show();
     }
 
-    // Handle form submission for submitting task
-    document.getElementById("submitTaskForm").addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const taskId = event.target.getAttribute("data-task-id");
+    // Submit task form event listener
+    document.getElementById("submitTaskForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        const taskId = document.querySelector('[data-bs-target="#submitTaskModal"]').getAttribute("data-task-id");
         const taskDone = document.getElementById("taskDone").checked;
         const timeTaken = document.getElementById("timeTaken").value;
         const videoWatched = document.getElementById("videoWatched").checked;
         const articleRead = document.getElementById("articleRead").checked;
         const bookRead = document.getElementById("bookRead").checked;
-
-
-        // For now, just show an alert with the task details
-        alert(`Task ID: ${taskId}\nTask Done: ${taskDone}\nTime Taken: ${timeTaken}\nVideo Watched: ${videoWatched}\nArticle Read: ${articleRead}`);
+    
+        // API call for submitting the task
+        fetch("http://localhost/Naluri/server-side/routes/userTaskRoutes.php/submit_task", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                task_id: taskId,
+                task_done: taskDone,
+                time_taken: timeTaken,
+                video_watched: videoWatched,
+                article_read: articleRead,
+                book_read: bookRead,
+            }),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            alert("Task submitted successfully!");
+            fetchTaskData(); // Refresh the task list
+            document.querySelector("#submitTaskModal .btn-close").click(); // Close modal
+        })
+        .catch((error) => {
+            console.error("Error submitting task:", error);
+            alert("Failed to submit task. Please try again.");
+        });
     });
+    
 
     // Initial fetch of task data
     fetchTaskData();

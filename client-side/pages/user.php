@@ -46,7 +46,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
                 href="https://demos.creative-tim.com/material-dashboard/pages/dashboard" target="_blank">
                 <img src="../assets/img/naluri.png" class="navbnaluriar-brand-img" width="26" height="26"
                     alt="main_logo">
-                <span class="ms-1 text-sm text-dark">Creative Tim</span>
+                <span class="ms-1 text-sm text-dark">Naluri</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0 mb-2">
