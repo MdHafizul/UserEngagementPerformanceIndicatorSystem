@@ -1,8 +1,9 @@
 <?php
 session_start();
-require_once './config/connectdb.php'; 
+require_once './config/connectdb.php';
 
-function sanitizeInput($input) {
+function sanitizeInput($input)
+{
     return htmlspecialchars($input, ENT_QUOTES, 'UTF-8');
 }
 
@@ -25,7 +26,7 @@ if (isset($_SESSION['user_type'])) {
     } else if ($_SESSION['user_type'] === 'admin') {
         header('Location: /Naluri/client-side/pages/dashboard.php');
     } else if ($_SESSION['user_type'] === 'patient') {
-        header('Location: /Naluri/client-side/pages/patientPages/dashboard.php');
+        header('Location: /Naluri/client-side/pages/patientPages/task.php');
     }
     exit();
 }
